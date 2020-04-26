@@ -1,0 +1,18 @@
+id: 437b5abe-87a0-11ea-af32-88e9fe79ec0a
+name: 437b5abe-87a0-11ea-af32-88e9fe79ec0aChase-Simulator
+base-url: https://chase-sim.intuit.com
+login-url: https://chase-sim.intuit.com/login
+provider-category: banking
+meta-data:
+  base-provider:
+    id: 2c064f98-91a1-4d4b-9ab1-c5ea4d81bfdc
+    name: Chase Bank
+capabilities:
+- name: Savings Bank
+  type: Service
+- name: Checking Bank
+  type: Service
+- name: oatuh2.0
+  type: Security
+- name: Chase-test-data-generator
+  type: DataProvider

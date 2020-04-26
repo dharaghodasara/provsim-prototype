@@ -10,7 +10,7 @@ import (
 var Router *gin.Engine
 
 func bootstrap() {
-	go data.LoadSimulationConfigurations()
+	data.LoadSimulationConfigurations()
 	setupEndpoints()
 }
 
@@ -21,6 +21,7 @@ func setupEndpoints() {
 	v1.GET("/ping", handlers.GetPing)
 	v1.POST("/providers", handlers.PostProvider)
 	v1.GET("/providers/:id", handlers.GetProvider)
+	v1.PUT("/providers/:id", handlers.UpdateProvider)
 
 	Router.Run(":8080")
 }

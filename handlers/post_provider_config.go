@@ -21,5 +21,5 @@ func PostProvider(c *gin.Context) {
 	}
 
 	s, err := yaml.Marshal(p)
-	c.YAML(http.StatusCreated, s)
+	c.YAML(http.StatusCreated, &s)
 }
