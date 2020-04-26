@@ -1,0 +1,255 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "additionalProperties": true,
+    "required": [
+        "name",
+        "id",
+        "base-url",
+        "login-url",
+        "provider-category",
+        "meta-data",
+        "capabilities"
+    ],
+    "properties": {
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Chase-Simulator"
+            ]
+        },
+        "id": {
+            "$id": "#/properties/id",
+            "type": "string",
+            "title": "The Id Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "efd958bc-2c65-4462-b774-b12d8ef97905"
+            ]
+        },
+        "base-url": {
+            "$id": "#/properties/base-url",
+            "type": "string",
+            "title": "The Base-url Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "https://chase-sim.intuit.com"
+            ]
+        },
+        "login-url": {
+            "$id": "#/properties/login-url",
+            "type": "string",
+            "title": "The Login-url Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "https://chase-sim.intuit.com/login"
+            ]
+        },
+        "provider-category": {
+            "$id": "#/properties/provider-category",
+            "type": "string",
+            "title": "The Provider-category Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "banking"
+            ]
+        },
+        "meta-data": {
+            "$id": "#/properties/meta-data",
+            "type": "object",
+            "title": "The Meta-data Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "base-provider": {
+                        "id": "2c064f98-91a1-4d4b-9ab1-c5ea4d81bfdc",
+                        "name": "Chase Bank"
+                    },
+                    "cloned-from": {
+                        "id": "e7b92147-6fa8-4307-9d62-c0d9164774f8"
+                    }
+                }
+            ],
+            "additionalProperties": true,
+            "required": [
+                "base-provider",
+                "cloned-from"
+            ],
+            "properties": {
+                "base-provider": {
+                    "$id": "#/properties/meta-data/properties/base-provider",
+                    "type": "object",
+                    "title": "The Base-provider Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "name": "Chase Bank",
+                            "id": "2c064f98-91a1-4d4b-9ab1-c5ea4d81bfdc"
+                        }
+                    ],
+                    "additionalProperties": true,
+                    "required": [
+                        "name",
+                        "id"
+                    ],
+                    "properties": {
+                        "name": {
+                            "$id": "#/properties/meta-data/properties/base-provider/properties/name",
+                            "type": "string",
+                            "title": "The Name Schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "Chase Bank"
+                            ]
+                        },
+                        "id": {
+                            "$id": "#/properties/meta-data/properties/base-provider/properties/id",
+                            "type": "string",
+                            "title": "The Id Schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "2c064f98-91a1-4d4b-9ab1-c5ea4d81bfdc"
+                            ]
+                        }
+                    }
+                },
+                "cloned-from": {
+                    "$id": "#/properties/meta-data/properties/cloned-from",
+                    "type": "object",
+                    "title": "The Cloned-from Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "id": "e7b92147-6fa8-4307-9d62-c0d9164774f8"
+                        }
+                    ],
+                    "additionalProperties": true,
+                    "required": [
+                        "id"
+                    ],
+                    "properties": {
+                        "id": {
+                            "$id": "#/properties/meta-data/properties/cloned-from/properties/id",
+                            "type": "string",
+                            "title": "The Id Schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "e7b92147-6fa8-4307-9d62-c0d9164774f8"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "capabilities": {
+            "$id": "#/properties/capabilities",
+            "type": "array",
+            "title": "The Capabilities Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "type": "Service",
+                        "name": "Savings Bank"
+                    },
+                    {
+                        "type": "Service",
+                        "name": "Checking Bank",
+                        "attributes": [
+                            [
+                                "pendig-tranaction",
+                                "include"
+                            ],
+                            [
+                                "something-else",
+                                "maybe"
+                            ]
+                        ]
+                    },
+                    {
+                        "type": "Security",
+                        "name": "oatuh2.0"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/capabilities/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                    {
+                        "type": "Service",
+                        "name": "Savings Bank"
+                    },
+                    {
+                        "type": "Service",
+                        "name": "Checking Bank",
+                        "attributes": [
+                            [
+                                "pendig-tranaction",
+                                "include"
+                            ],
+                            [
+                                "something-else",
+                                "maybe"
+                            ]
+                        ]
+                    },
+                    {
+                        "type": "Security",
+                        "name": "oatuh2.0"
+                    }
+                ],
+                "additionalProperties": true,
+                "required": [
+                    "name",
+                    "type"
+                ],
+                "properties": {
+                    "name": {
+                        "$id": "#/properties/capabilities/items/properties/name",
+                        "type": "string",
+                        "title": "The Name Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Savings Bank"
+                        ]
+                    },
+                    "type": {
+                        "$id": "#/properties/capabilities/items/properties/type",
+                        "type": "string",
+                        "title": "The Type Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Service"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
