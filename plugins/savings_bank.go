@@ -3,7 +3,7 @@ package plugins
 import (
 	"fmt"
 
-	"github.com/elangovans/provsim-prototype/core"
+	"provsim-prototype/core"
 )
 
 //SavingsBank ...

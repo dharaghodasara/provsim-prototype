@@ -3,16 +3,14 @@ package main
 import (
 	"log"
 
-	"github.com/elangovans/provsim-prototype/handlers"
-	"github.com/elangovans/provsim-prototype/registry"
+	"provsim-prototype/handlers"
+	"provsim-prototype/registry"
+
 	"github.com/gin-gonic/gin"
 )
 
 //Router ...
 var Router *gin.Engine
-
-//StorageProvider
-var storageProvider registry.StorageProvider
 
 func loadData(sp registry.StorageProvider) {
 	registry.RegistryMap, registry.RegisryLoaded = sp.Fetch()
@@ -24,20 +22,22 @@ func loadData(sp registry.StorageProvider) {
 
 func setupEndpoints() {
 	Router = gin.Default()
+	//gin.SetMode(gin.ReleaseMode)
 	v1 := Router.Group("/v1")
 
 	v1.GET("/ping", handlers.GetPing)
-	v1.POST("/providers", handlers.PostProvider)
 	v1.GET("/providers/:id", handlers.GetProvider)
 	v1.PUT("/providers/:id", handlers.UpdateProvider)
+	v1.POST("/providers", handlers.PostProvider)
 
 	Router.Run(":8080")
 }
 
 func bootstrap() {
-	var lsf = registry.LocalFileSystemStorageProvider{FilePath: "/data/"}
-	go loadData(lsf)
-
+	var lsf = registry.LocalFileSystemStorageProvider{
+		FilePath: "/data/",
+	}
+	go loadData(lsf) //load the configuration data concurrently (async)
 	setupEndpoints()
 }
 

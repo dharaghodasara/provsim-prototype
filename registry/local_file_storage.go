@@ -9,7 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/elangovans/provsim-prototype/core"
+	"provsim-prototype/core"
+
 	"github.com/google/uuid"
 	"gopkg.in/yaml.v2"
 )
@@ -21,7 +22,7 @@ type LocalFileSystemStorageProvider struct {
 
 //Fetch Configfiles from the filesystem and load the configs
 //TODO: is this an optimized way to send the map as return value.
-func (s LocalFileSystemStorageProvider) Fetch() (map[uuid.UUID]core.Provider, error) {
+func (S LocalFileSystemStorageProvider) Fetch() (map[uuid.UUID]core.Provider, error) {
 	b := time.Now()
 
 	path, err := os.Getwd()
@@ -31,7 +32,7 @@ func (s LocalFileSystemStorageProvider) Fetch() (map[uuid.UUID]core.Provider, er
 	}
 	log.Printf("The working directory is %s", path)
 
-	files, err := readDir(path + s.FilePath)
+	files, err := readDir(path + S.FilePath)
 	if nil != err {
 		log.Fatalf("while reading the data folder: %v", err)
 		return nil, err
@@ -45,7 +46,7 @@ func (s LocalFileSystemStorageProvider) Fetch() (map[uuid.UUID]core.Provider, er
 		}
 
 		var pr core.Provider
-		d, err := ioutil.ReadFile(path + s.FilePath + file.Name())
+		d, err := ioutil.ReadFile(path + S.FilePath + file.Name())
 		if nil != err {
 			log.Fatalf("while reading the data folder: %v", err)
 			return nil, err

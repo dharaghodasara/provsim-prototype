@@ -4,7 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/elangovans/provsim-prototype/registry"
+	"provsim-prototype/registry"
+
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"gopkg.in/yaml.v2"

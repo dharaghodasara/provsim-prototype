@@ -1,7 +1,8 @@
 package registry
 
 import (
-	"github.com/elangovans/provsim-prototype/core"
+	"provsim-prototype/core"
+
 	"github.com/google/uuid"
 )
 

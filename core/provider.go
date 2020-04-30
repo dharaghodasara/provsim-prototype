@@ -4,17 +4,21 @@ import (
 	"github.com/google/uuid"
 )
 
-//ProviderCategory is an enum
-type ProviderCategory string
-
-//CapabilityType is an enum
+//CapabilityType is an enum that defines the
+//various capabilities that we want to simulate.
 type CapabilityType string
 
+// TODO: Later this can be managed thru database.
 const (
 	Service  CapabilityType = "service"
 	Security CapabilityType = "security"
 )
 
+//ProviderCategory is an enum that helps to define
+//the type of providers that we support for testing.
+type ProviderCategory string
+
+// TODO: This could be managed thru database.
 const (
 	Banking   ProviderCategory = "banking"
 	Tax       ProviderCategory = "tax"
