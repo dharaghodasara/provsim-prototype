@@ -7,7 +7,13 @@
     - are considered as "addons" to a provider. 
     - exposes `DataGeneerator` interface 
         - `DataGenerator` takes one paramenter `scenario` and returns `JSON node`
-        - Quesion: How do we handle the user associations with the data?  
+        - Quesions: 
+            1. How do we handle the user associations with the data?  
+            2. Should the original data be cloned and stored against the users? 
+            3. If we stored against the users, when a request comes for a existing_user, pick the data from the user and manupulate else pick from the template and persist for the users. 
     - listens to events 
         - `onEvent` they react and change state of the data 
-- CapabilityDecorator 
+- CapabilityDecorator
+
+
+
