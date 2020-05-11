@@ -2,6 +2,7 @@ package registry
 
 import (
 	"fmt"
+	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"os"
@@ -12,7 +13,6 @@ import (
 	"provsim-prototype/core"
 
 	"github.com/google/uuid"
-	"gopkg.in/yaml.v2"
 )
 
 //LocalFileSystemStorageProvider ...
@@ -40,19 +40,25 @@ func (S LocalFileSystemStorageProvider) Fetch() (map[uuid.UUID]core.Provider, er
 	log.Printf("Number of files in the list %d", len(files))
 
 	configs := make(map[uuid.UUID]core.Provider)
+
+	data := make(chan []byte, len(files))
 	for _, file := range files {
 		if !strings.HasSuffix(file.Name(), ".yaml") {
 			continue
 		}
+		go func(file os.FileInfo) {
+			d, err := ioutil.ReadFile(path + S.FilePath + file.Name())
+			if nil != err {
+				log.Fatalf("while reading the data folder: %v", err)
+				return
+			}
+			data <- d
+		}(file)
+	}
 
+	for i := 0; i< len(files) ; i++ {
 		var pr core.Provider
-		d, err := ioutil.ReadFile(path + S.FilePath + file.Name())
-		if nil != err {
-			log.Fatalf("while reading the data folder: %v", err)
-			return nil, err
-		}
-
-		yaml.Unmarshal([]byte(d), &pr)
+		yaml.Unmarshal(<-data, &pr)
 		configs[pr.ID] = pr
 	}
 
